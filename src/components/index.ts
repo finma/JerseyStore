@@ -1,3 +1,4 @@
 import BottomNavigator from './big/BottomNavigator';
+import TabItem from './big/TabItem';
 
-export {BottomNavigator};
+export {BottomNavigator, TabItem};
