@@ -8,5 +8,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react/no-unstable-nested-components': 'off',
   },
 };
