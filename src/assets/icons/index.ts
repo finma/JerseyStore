@@ -4,6 +4,8 @@ import IconProfile from './profile.svg';
 import IconProfileActive from './profile-active.svg';
 import IconJersey from './jersey.svg';
 import IconJerseyActive from './jersey-active.svg';
+import IconSearch from './search.svg';
+import IconShoppingCart from './shopping-cart.svg';
 
 export {
   IconHome,
@@ -12,4 +14,6 @@ export {
   IconProfileActive,
   IconJersey,
   IconJerseyActive,
+  IconSearch,
+  IconShoppingCart,
 };
