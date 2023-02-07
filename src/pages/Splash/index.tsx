@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+
 import {Illustration, Logo} from '../../assets';
 
 const Splash = (props: any) => {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     props.navigation.replace('Home');
-  //   }, 2000);
-  // }, [props.navigation]);
+  useEffect(() => {
+    setTimeout(() => {
+      props.navigation.replace('MainApp');
+    }, 2000);
+  }, [props.navigation]);
 
   return (
-    <View style={styles.pages}>
+    <View style={styles.container}>
       <Logo />
       <View style={styles.illustration}>
         <Illustration />
@@ -22,7 +23,7 @@ const Splash = (props: any) => {
 export default Splash;
 
 const styles = StyleSheet.create({
-  pages: {
+  container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const Home = () => {
+const ListJersey = () => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>ListJersey Screen</Text>
     </View>
   );
 };
 
-export default Home;
+export default ListJersey;
 
 const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
