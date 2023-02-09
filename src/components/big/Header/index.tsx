@@ -3,15 +3,22 @@ import {StyleSheet, TextInput, View} from 'react-native';
 
 import {IconSearch} from '../../../assets';
 import {colors, responsiveHeight} from '../../../utils';
+import {Button, Gap} from '../../small';
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
+        {/* Input Search */}
         <View style={styles.searchSection}>
           <IconSearch />
           <TextInput placeholder="Cari Jersey ..." style={styles.input} />
         </View>
+
+        <Gap width={10} />
+
+        {/* Shopping Cart Button */}
+        <Button icon="shopping-cart" totalItems={7} />
       </View>
     </View>
   );
