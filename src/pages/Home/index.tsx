@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {Header} from '../../components';
+import {BannerSlider, Header} from '../../components';
 
 const Home = () => {
   return (
     <View style={styles.container}>
       <Header />
+      <BannerSlider />
     </View>
   );
 };
