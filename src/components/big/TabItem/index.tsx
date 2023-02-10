@@ -51,5 +51,6 @@ const styles = StyleSheet.create<StyleSheetType>({
     color: isFocused ? colors.white : colors.secondary,
     fontSize: 11,
     marginTop: 4,
+    fontFamily: 'PublicSans-Bold',
   }),
 });

@@ -46,5 +46,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
+    fontFamily: 'PublicSans-Regular',
   },
 });
