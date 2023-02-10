@@ -1,21 +1,40 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
-import {BannerSlider, Header, ListLiga} from '../../components';
-import {dummyLigas} from '../../data';
+import {
+  BannerSlider,
+  Gap,
+  Header,
+  ListJersey,
+  ListLiga,
+} from '../../components';
+import {dummyJerseys, dummyLigas} from '../../data';
 
 const Home = () => {
   const [ligas] = useState(dummyLigas);
+  const [jerseys] = useState(dummyJerseys);
 
   return (
     <View style={styles.container}>
-      <Header />
-      <BannerSlider />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Header />
+        <BannerSlider />
 
-      <View style={styles.chooseLiga}>
-        <Text style={styles.label}>Pilih Liga</Text>
-        <ListLiga ligas={ligas} />
-      </View>
+        <View style={styles.chooseLiga}>
+          <Text style={styles.label}>Pilih Liga</Text>
+          <ListLiga ligas={ligas} />
+        </View>
+
+        <View style={styles.chooseJersey}>
+          <Text style={styles.label}>
+            Pilih <Text style={styles.boldLabel}>Jersey</Text> Yang Anda
+            Inginkan
+          </Text>
+          <ListJersey jerseys={jerseys} />
+        </View>
+
+        <Gap height={80} />
+      </ScrollView>
     </View>
   );
 };
@@ -28,8 +47,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     marginTop: 20,
   },
+  chooseJersey: {
+    marginHorizontal: 30,
+    marginTop: 20,
+  },
   label: {
     fontSize: 18,
     fontFamily: 'PublicSans-Regular',
+  },
+  boldLabel: {
+    fontSize: 18,
+    fontFamily: 'PublicSans-Bold',
   },
 });
