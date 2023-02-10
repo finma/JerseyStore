@@ -1,14 +1,12 @@
 import {StyleSheet, View} from 'react-native';
-import React, {useState} from 'react';
-import {dummyLigas} from '../../../data';
+import React from 'react';
+
 import {CardLiga} from '../../small';
 
-const ListLiga = () => {
-  const [ligas] = useState(dummyLigas);
-
+const ListLiga = ({ligas}: any) => {
   return (
     <View style={styles.container}>
-      {ligas.map(liga => (
+      {ligas.map((liga: any) => (
         <CardLiga key={liga.id} liga={liga} />
       ))}
     </View>

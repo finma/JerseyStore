@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import {BannerSlider, Header, ListLiga} from '../../components';
+import {dummyLigas} from '../../data';
 
 const Home = () => {
+  const [ligas] = useState(dummyLigas);
+
   return (
     <View style={styles.container}>
       <Header />
@@ -11,7 +14,7 @@ const Home = () => {
 
       <View style={styles.chooseLiga}>
         <Text style={styles.label}>Pilih Liga</Text>
-        <ListLiga />
+        <ListLiga ligas={ligas} />
       </View>
     </View>
   );

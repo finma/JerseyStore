@@ -1,12 +1,9 @@
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+
 import {colors, responsiveHeight, responsiveWidth} from '../../../utils';
 
-interface CardLigaProps {
-  liga: any;
-}
-
-const CardLiga = ({liga}: CardLigaProps) => {
+const CardLiga = ({liga}: any) => {
   return (
     <TouchableOpacity style={styles.container}>
       <Image source={liga.image} style={styles.logo} />
