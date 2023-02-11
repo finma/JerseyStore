@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 
-import {dummyProfile} from '../../data';
+import {Gap, ListMenu} from '../../components';
+import {dummyProfile, menus} from '../../data';
 import {colors, responsiveHeight, responsiveWidth} from '../../utils';
 
 const Profile = () => {
@@ -19,6 +20,9 @@ const Profile = () => {
           <Text style={styles.desc}>{profile.address}</Text>
           <Text style={styles.desc}>{profile.city}</Text>
         </View>
+
+        <Gap height={10} />
+        <ListMenu menus={menus} />
       </View>
     </View>
   );
