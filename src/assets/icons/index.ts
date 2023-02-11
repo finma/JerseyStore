@@ -7,6 +7,12 @@ import IconJerseyActive from './jersey-active.svg';
 import IconSearch from './search.svg';
 import IconShoppingCart from './shopping-cart.svg';
 
+import IconArrowRight from './arrow-right.svg';
+import IconChangePassword from './change-password.svg';
+import IconHistoryJersey from './history-jersey.svg';
+import IconSignOut from './sign-out.svg';
+import IconUserEdit from './user-edit.svg';
+
 export {
   IconHome,
   IconHomeActive,
@@ -16,4 +22,9 @@ export {
   IconJerseyActive,
   IconSearch,
   IconShoppingCart,
+  IconArrowRight,
+  IconChangePassword,
+  IconHistoryJersey,
+  IconSignOut,
+  IconUserEdit,
 };
