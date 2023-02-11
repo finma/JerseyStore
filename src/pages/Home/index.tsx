@@ -3,6 +3,7 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import {
   BannerSlider,
+  Button,
   Gap,
   Header,
   ListJerseys,
@@ -31,9 +32,10 @@ const Home = () => {
             Inginkan
           </Text>
           <ListJerseys jerseys={jerseys} />
+          <Button title="Lihat Semua" type="text" />
         </View>
 
-        <Gap height={80} />
+        <Gap height={100} />
       </ScrollView>
     </View>
   );
