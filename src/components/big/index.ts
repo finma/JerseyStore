@@ -3,6 +3,6 @@ import TabItem from './TabItem';
 import Header from './Header';
 import BannerSlider from './BannerSlider';
 import ListLiga from './ListLiga';
-import ListJersey from './ListJersey';
+import ListJerseys from './ListJerseys';
 
-export {BannerSlider, BottomNavigator, TabItem, Header, ListLiga, ListJersey};
+export {BannerSlider, BottomNavigator, TabItem, Header, ListLiga, ListJerseys};

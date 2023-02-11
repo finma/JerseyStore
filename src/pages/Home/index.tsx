@@ -5,7 +5,7 @@ import {
   BannerSlider,
   Gap,
   Header,
-  ListJersey,
+  ListJerseys,
   ListLiga,
 } from '../../components';
 import {dummyJerseys, dummyLigas} from '../../data';
@@ -30,7 +30,7 @@ const Home = () => {
             Pilih <Text style={styles.boldLabel}>Jersey</Text> Yang Anda
             Inginkan
           </Text>
-          <ListJersey jerseys={jerseys} />
+          <ListJerseys jerseys={jerseys} />
         </View>
 
         <Gap height={80} />
