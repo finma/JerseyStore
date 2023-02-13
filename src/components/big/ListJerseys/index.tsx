@@ -2,11 +2,11 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {CardJersey} from '../../small';
 
-const ListJerseys = ({jerseys}: any) => {
+const ListJerseys = ({jerseys, navigation}: any) => {
   return (
     <View style={styles.container}>
       {jerseys.map((jersey: any) => (
-        <CardJersey key={jersey.id} jersey={jersey} />
+        <CardJersey key={jersey.id} jersey={jersey} navigation={navigation} />
       ))}
     </View>
   );

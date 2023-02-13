@@ -3,7 +3,7 @@ import React from 'react';
 import {colors, responsiveWidth} from '../../../utils';
 import Button from '../Button';
 
-const CardJersey = ({jersey}: any) => {
+const CardJersey = ({jersey, navigation}: any) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.card}>
@@ -11,7 +11,11 @@ const CardJersey = ({jersey}: any) => {
         <Text style={styles.text}>{jersey.name}</Text>
       </TouchableOpacity>
 
-      <Button type="text" title="Detail" />
+      <Button
+        type="text"
+        title="Detail"
+        onPress={() => navigation.navigate('JerseyDetail', {jersey})}
+      />
     </View>
   );
 };

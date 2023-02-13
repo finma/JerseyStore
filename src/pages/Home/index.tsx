@@ -11,7 +11,7 @@ import {
 } from '../../components';
 import {dummyJerseys, dummyLigas} from '../../data';
 
-const Home = () => {
+const Home = (props: any) => {
   const [ligas] = useState(dummyLigas);
   const [jerseys] = useState(dummyJerseys);
 
@@ -31,7 +31,7 @@ const Home = () => {
             Pilih <Text style={styles.boldLabel}>Jersey</Text> Yang Anda
             Inginkan
           </Text>
-          <ListJerseys jerseys={jerseys} />
+          <ListJerseys jerseys={jerseys} navigation={props.navigation} />
           <Button title="Lihat Semua" type="text" />
         </View>
 

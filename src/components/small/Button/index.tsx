@@ -1,23 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import {IconShoppingCart} from '../../../assets';
+import {IconArrowLeft, IconShoppingCart} from '../../../assets';
 import {colors} from '../../../utils';
 import ButtonTextOnly from './ButtonTextOnly';
 
 interface ButtonProps {
-  icon?: 'shopping-cart' | undefined;
+  icon?: 'shopping-cart' | 'arrow-left' | undefined;
   totalItems?: number;
   type?: 'icon-only' | 'icon-text' | 'text';
   title?: string;
+  onPress?: () => void;
 }
 
 const Button = (props: ButtonProps) => {
-  const {icon, totalItems, type} = props;
+  const {icon, totalItems, type, onPress} = props;
 
   const Icon = () => {
     if (icon === 'shopping-cart') {
       return <IconShoppingCart />;
+    } else if (icon === 'arrow-left') {
+      return <IconArrowLeft />;
     }
     return <IconShoppingCart />;
   };
@@ -27,7 +30,7 @@ const Button = (props: ButtonProps) => {
   }
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Icon />
 
       {totalItems && (
