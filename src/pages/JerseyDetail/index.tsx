@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 
-import {Button, CardLiga} from '../../components';
+import {Button, CardLiga, JerseySlider} from '../../components';
 import {
   colors,
   responsiveHeight,
@@ -12,13 +12,16 @@ import {
 
 const JerseyDetail = (props: any) => {
   const [jersey] = useState(props.route.params.jersey);
-  // const [image] = useState(props.route.params.jersey.image[0]);
+  const [images] = useState(props.route.params.jersey.image);
 
   return (
     <View style={styles.page}>
       <View style={styles.button}>
         <Button icon="arrow-left" onPress={() => props.navigation.goBack()} />
       </View>
+
+      <JerseySlider images={images} />
+
       <View style={styles.container}>
         <View style={styles.liga}>
           <CardLiga liga={jersey.liga} />
@@ -61,6 +64,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: 30,
     marginLeft: 30,
+    zIndex: 1,
   },
   desc: {
     marginHorizontal: 30,

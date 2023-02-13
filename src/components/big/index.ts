@@ -5,6 +5,7 @@ import BannerSlider from './BannerSlider';
 import ListLiga from './ListLiga';
 import ListJerseys from './ListJerseys';
 import ListMenu from './ListMenu';
+import JerseySlider from './JerseySlider';
 
 export {
   BannerSlider,
@@ -14,4 +15,5 @@ export {
   ListLiga,
   ListJerseys,
   ListMenu,
+  JerseySlider,
 };
