@@ -13,6 +13,7 @@ import IconChangePassword from './change-password.svg';
 import IconHistoryJersey from './history-jersey.svg';
 import IconSignOut from './sign-out.svg';
 import IconUserEdit from './user-edit.svg';
+import IconDelete from './delete.svg';
 
 export {
   IconHome,
@@ -30,4 +31,5 @@ export {
   IconHistoryJersey,
   IconSignOut,
   IconUserEdit,
+  IconDelete,
 };
