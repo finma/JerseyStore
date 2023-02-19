@@ -3,10 +3,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {IconArrowLeft, IconShoppingCart} from '../../../assets';
 import {colors} from '../../../utils';
+import ButtonIconText from './ButtonIconText';
 import ButtonTextOnly from './ButtonTextOnly';
 
 interface ButtonProps {
-  icon?: 'shopping-cart' | 'arrow-left' | undefined;
+  icon?: 'shopping-cart' | 'arrow-left' | 'shopping-cart-white' | undefined;
   totalItems?: number;
   type?: 'icon-only' | 'icon-text' | 'text';
   title?: string;
@@ -27,6 +28,8 @@ const Button = (props: ButtonProps) => {
 
   if (type === 'text') {
     return <ButtonTextOnly {...props} />;
+  } else if (type === 'icon-text') {
+    return <ButtonIconText {...props} />;
   }
 
   return (
