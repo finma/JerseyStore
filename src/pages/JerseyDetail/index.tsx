@@ -2,12 +2,20 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 
-import {Button, CardLiga, JerseySlider} from '../../components';
+import {
+  Button,
+  CardLiga,
+  Gap,
+  Input,
+  JerseySlider,
+  Select,
+} from '../../components';
 import {
   colors,
   responsiveHeight,
   heightMobileUI,
   numberWithCommas,
+  responsiveWidth,
 } from '../../utils';
 
 const JerseyDetail = (props: any) => {
@@ -38,6 +46,31 @@ const JerseyDetail = (props: any) => {
             <Text style={styles.typeWeight}>Jenis : {jersey.type}</Text>
             <Text style={styles.typeWeight}>Berat : {jersey.weight}</Text>
           </View>
+
+          <View style={styles.wrapperInput}>
+            <Input
+              label="Jumlah"
+              width={responsiveWidth(166)}
+              height={responsiveHeight(33)}
+              fontSize={13}
+            />
+            <Select
+              label="Pilih Ukuran"
+              width={responsiveWidth(166)}
+              height={responsiveHeight(33)}
+              fontSize={13}
+              datas={jersey.size}
+            />
+          </View>
+          <Input textarea label="Keterangan" fontSize={13} />
+
+          <Gap height={15} />
+
+          <Button
+            type="icon-text"
+            icon="shopping-cart-white"
+            title="Masukan Keranjang"
+          />
         </View>
       </View>
     </View>
@@ -92,11 +125,16 @@ const styles = StyleSheet.create({
   },
   wrapperTypePrice: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   typeWeight: {
     fontSize: 13,
     fontFamily: 'PublicSans-Regular',
     marginRight: 30,
     color: colors.black,
+  },
+  wrapperInput: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
