@@ -2,7 +2,15 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {Cart, Home, JerseyDetail, ListJersey, Profile, Splash} from '../pages';
+import {
+  Cart,
+  Checkout,
+  Home,
+  JerseyDetail,
+  ListJersey,
+  Profile,
+  Splash,
+} from '../pages';
 import {BottomNavigator} from '../components';
 
 const Stack = createNativeStackNavigator();
@@ -49,6 +57,7 @@ const Router = () => {
         component={Cart}
         options={{title: 'Keranjang'}}
       />
+      <Stack.Screen name="Checkout" component={Checkout} />
     </Stack.Navigator>
   );
 };

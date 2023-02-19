@@ -4,9 +4,12 @@ import React, {useState} from 'react';
 import {Button, ListCart} from '../../components';
 import {dummyOrders} from '../../data';
 import {colors, numberWithCommas} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const Cart = () => {
   const [orders] = useState(dummyOrders[0]);
+
+  const navigation = useNavigation();
 
   return (
     <View style={styles.page}>
@@ -26,7 +29,12 @@ const Cart = () => {
         </View>
 
         {/* Button Checkout */}
-        <Button title="Checkout" type="icon-text" icon="shopping-cart-white" />
+        <Button
+          title="Checkout"
+          type="icon-text"
+          icon="shopping-cart-white"
+          onPress={() => navigation.navigate('Checkout' as never)}
+        />
       </View>
     </View>
   );
