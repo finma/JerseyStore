@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 
@@ -5,7 +6,8 @@ import {IconSearch} from '../../../assets';
 import {colors, responsiveHeight} from '../../../utils';
 import {Button, Gap} from '../../small';
 
-const Header = ({navigation}: any) => {
+const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
@@ -21,7 +23,7 @@ const Header = ({navigation}: any) => {
         <Button
           icon="shopping-cart"
           totalItems={7}
-          onPress={() => navigation.navigate('Cart')}
+          onPress={() => navigation.navigate('Cart' as never)}
         />
       </View>
     </View>

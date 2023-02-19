@@ -1,14 +1,16 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {Illustration, Logo} from '../../assets';
 
-const Splash = (props: any) => {
+const Splash = () => {
+  const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.replace('MainApp');
+      navigation.navigate('MainApp' as never);
     }, 2000);
-  }, [props.navigation]);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

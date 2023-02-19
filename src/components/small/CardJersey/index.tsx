@@ -2,8 +2,10 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {colors, responsiveWidth} from '../../../utils';
 import Button from '../Button';
+import {useNavigation} from '@react-navigation/native';
 
-const CardJersey = ({jersey, navigation}: any) => {
+const CardJersey = ({jersey}: any) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.card}>
@@ -14,7 +16,9 @@ const CardJersey = ({jersey, navigation}: any) => {
       <Button
         type="text"
         title="Detail"
-        onPress={() => navigation.navigate('JerseyDetail', {jersey})}
+        onPress={() =>
+          navigation.navigate('JerseyDetail' as never, {jersey} as never)
+        }
       />
     </View>
   );

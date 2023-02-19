@@ -4,13 +4,13 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Gap, Header, ListJerseys, ListLiga} from '../../components';
 import {dummyJerseys, dummyLigas} from '../../data';
 
-const ListJersey = (props: any) => {
+const ListJersey = () => {
   const [ligas] = useState(dummyLigas);
   const [jerseys] = useState(dummyJerseys);
 
   return (
     <View style={styles.container}>
-      <Header navigation={props.navigation} />
+      <Header />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.scrollContainer}>

@@ -11,14 +11,14 @@ import {
 } from '../../components';
 import {dummyJerseys, dummyLigas} from '../../data';
 
-const Home = (props: any) => {
+const Home = () => {
   const [ligas] = useState(dummyLigas);
   const [jerseys] = useState(dummyJerseys);
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header navigation={props.navigation} />
+        <Header />
         <BannerSlider />
 
         <View style={styles.chooseLiga}>
@@ -31,7 +31,7 @@ const Home = (props: any) => {
             Pilih <Text style={styles.boldLabel}>Jersey</Text> Yang Anda
             Inginkan
           </Text>
-          <ListJerseys jerseys={jerseys} navigation={props.navigation} />
+          <ListJerseys jerseys={jerseys} />
           <Button title="Lihat Semua" type="text" />
         </View>
 
