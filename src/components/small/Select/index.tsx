@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
-import {colors} from '../../../utils';
+import {colors, responsiveHeight} from '../../../utils';
 
 interface SelectProps {
   datas: string[];
@@ -23,6 +23,7 @@ const Select = ({datas, width, height, label, fontSize}: SelectProps) => {
           selectedValue={selectedValue}
           style={styles.picker({width, height, fontSize})}
           onValueChange={itemValue => setSelectedValue(itemValue)}>
+          <Picker.Item label="--Pilih--" value="" />
           {datas.map((item, idx) => (
             <Picker.Item label={item} value={item} key={idx} />
           ))}
@@ -61,7 +62,7 @@ const styles = StyleSheet.create<StyleSheetType>({
     fontFamily: 'PublicSans-Regular',
     color: colors.black,
     width: width,
-    height: height,
+    height: height ? height : responsiveHeight(46),
     marginTop: -10,
     marginBottom: 10,
   }),
