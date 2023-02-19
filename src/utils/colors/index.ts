@@ -5,4 +5,5 @@ export const colors = {
   danger: '#FF0011',
   yellow: '#FFF6D5',
   black: '#000000',
+  border: '#C4C4C4',
 };
