@@ -18,7 +18,7 @@ const Home = (props: any) => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header />
+        <Header navigation={props.navigation} />
         <BannerSlider />
 
         <View style={styles.chooseLiga}>

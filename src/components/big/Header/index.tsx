@@ -5,7 +5,7 @@ import {IconSearch} from '../../../assets';
 import {colors, responsiveHeight} from '../../../utils';
 import {Button, Gap} from '../../small';
 
-const Header = () => {
+const Header = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapperHeader}>
@@ -18,7 +18,11 @@ const Header = () => {
         <Gap width={10} />
 
         {/* Shopping Cart Button */}
-        <Button icon="shopping-cart" totalItems={7} />
+        <Button
+          icon="shopping-cart"
+          totalItems={7}
+          onPress={() => navigation.navigate('Cart')}
+        />
       </View>
     </View>
   );
