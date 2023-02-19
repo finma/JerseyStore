@@ -62,6 +62,8 @@ const styles = StyleSheet.create<StyleSheetType>({
     color: colors.black,
     width: width,
     height: height,
+    marginTop: -10,
+    marginBottom: 10,
   }),
   wrapperPicker: {
     borderWidth: 1,

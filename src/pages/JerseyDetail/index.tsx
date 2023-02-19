@@ -51,13 +51,13 @@ const JerseyDetail = (props: any) => {
             <Input
               label="Jumlah"
               width={responsiveWidth(166)}
-              height={responsiveHeight(33)}
+              height={responsiveHeight(43)}
               fontSize={13}
             />
             <Select
               label="Pilih Ukuran"
               width={responsiveWidth(166)}
-              height={responsiveHeight(33)}
+              height={responsiveHeight(43)}
               fontSize={13}
               datas={jersey.size}
             />

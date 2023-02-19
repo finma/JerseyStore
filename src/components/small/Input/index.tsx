@@ -1,5 +1,6 @@
-import {StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
+
 import {colors} from '../../../utils';
 
 interface InputProps {
@@ -86,8 +87,7 @@ const styles = StyleSheet.create<StyleSheetType>({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.border,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    padding: 10,
     textAlignVertical: 'top',
   }),
 });
