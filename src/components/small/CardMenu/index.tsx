@@ -1,18 +1,23 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {IconArrowRight} from '../../../assets';
 import {colors, responsiveHeight} from '../../../utils';
 
-const CardMenu = ({menu}: any) => {
+const CardMenu = ({menu}: {menu: MenuType}) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate(menu.page as never)}>
       <View style={styles.menu}>
         {menu.icon}
         <Text style={styles.textMenu}>{menu.title}</Text>
       </View>
       <IconArrowRight />
-    </View>
+    </TouchableOpacity>
   );
 };
 
