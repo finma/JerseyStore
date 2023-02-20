@@ -14,6 +14,7 @@ import IconHistoryJersey from './history-jersey.svg';
 import IconSignOut from './sign-out.svg';
 import IconUserEdit from './user-edit.svg';
 import IconDelete from './delete.svg';
+import IconSubmit from './submit.svg';
 
 export {
   IconHome,
@@ -32,4 +33,5 @@ export {
   IconSignOut,
   IconUserEdit,
   IconDelete,
+  IconSubmit,
 };
