@@ -11,6 +11,7 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   value?: string;
+  secureTextEntry?: boolean;
 }
 
 const Input = ({
@@ -21,6 +22,7 @@ const Input = ({
   label,
   placeholder,
   value,
+  secureTextEntry,
 }: InputProps) => {
   if (textarea) {
     return (
@@ -43,6 +45,7 @@ const Input = ({
         style={styles.input({width, height, fontSize})}
         placeholder={placeholder}
         value={value}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   );
