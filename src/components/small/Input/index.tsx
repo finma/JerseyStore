@@ -10,6 +10,7 @@ interface InputProps {
   fontSize?: number;
   label?: string;
   placeholder?: string;
+  value?: string;
 }
 
 const Input = ({
@@ -19,6 +20,7 @@ const Input = ({
   fontSize,
   label,
   placeholder,
+  value,
 }: InputProps) => {
   if (textarea) {
     return (
@@ -28,6 +30,7 @@ const Input = ({
           style={styles.textarea({width, height, fontSize})}
           multiline
           numberOfLines={3}
+          value={value}
         />
       </View>
     );
@@ -39,6 +42,7 @@ const Input = ({
       <TextInput
         style={styles.input({width, height, fontSize})}
         placeholder={placeholder}
+        value={value}
       />
     </View>
   );
@@ -62,6 +66,7 @@ interface StyleProps {
 const styles = StyleSheet.create<StyleSheetType>({
   container: {
     marginTop: 10,
+    gap: 6,
   },
   label: ({fontSize}: StyleProps) => ({
     fontSize: fontSize ? fontSize : 18,

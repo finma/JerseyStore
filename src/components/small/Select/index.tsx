@@ -51,6 +51,7 @@ interface StyleProps {
 const styles = StyleSheet.create<StyleSheetType>({
   container: {
     marginTop: 10,
+    gap: 6,
   },
   label: ({fontSize}: StyleProps) => ({
     fontSize: fontSize ? fontSize : 18,
