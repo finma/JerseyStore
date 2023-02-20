@@ -7,7 +7,7 @@ import ButtonIconText from './ButtonIconText';
 import ButtonTextOnly from './ButtonTextOnly';
 
 interface ButtonProps {
-  icon?: 'shopping-cart' | 'arrow-left' | 'shopping-cart-white' | undefined;
+  icon?: 'shopping-cart' | 'arrow-left' | 'shopping-cart-white' | 'submit';
   totalItems?: number;
   type?: 'icon-only' | 'icon-text' | 'text';
   title?: string;

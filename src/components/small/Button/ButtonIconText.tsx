@@ -5,19 +5,21 @@ import {
   IconArrowLeft,
   IconShoppingCart,
   IconShoppingCartWhite,
+  IconSubmit,
 } from '../../../assets';
 import {colors} from '../../../utils';
 
+const icons: any = {
+  'shopping-cart': IconShoppingCart,
+  'arrow-left': IconArrowLeft,
+  'shopping-cart-white': IconShoppingCartWhite,
+  submit: IconSubmit,
+};
+
 const ButtonIconText = ({title, onPress, icon}: any) => {
   const Icon = () => {
-    if (icon === 'shopping-cart') {
-      return <IconShoppingCart />;
-    } else if (icon === 'arrow-left') {
-      return <IconArrowLeft />;
-    } else if (icon === 'shopping-cart-white') {
-      return <IconShoppingCartWhite />;
-    }
-    return <IconShoppingCart />;
+    const IconComponent = icons[icon] || IconShoppingCart;
+    return <IconComponent />;
   };
 
   return (
