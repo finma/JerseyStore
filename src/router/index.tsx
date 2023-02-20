@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   Cart,
+  ChangePassword,
   Checkout,
   EditProfile,
   Home,
@@ -63,6 +64,11 @@ const Router = () => {
         name="EditProfile"
         component={EditProfile}
         options={{title: 'Edit Profile'}}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={{title: 'Change Password'}}
       />
     </Stack.Navigator>
   );
