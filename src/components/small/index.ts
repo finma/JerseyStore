@@ -7,6 +7,7 @@ import Input from './Input';
 import Select from './Select';
 import CardCart from './CardCart';
 import CardAddress from './CardAddress';
+import CardHistory from './CardHistory';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Select,
   CardCart,
   CardAddress,
+  CardHistory,
 };

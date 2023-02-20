@@ -7,6 +7,7 @@ import {
   ChangePassword,
   Checkout,
   EditProfile,
+  History,
   Home,
   JerseyDetail,
   ListJersey,
@@ -69,6 +70,11 @@ const Router = () => {
         name="ChangePassword"
         component={ChangePassword}
         options={{title: 'Change Password'}}
+      />
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{title: 'History Pemesanan'}}
       />
     </Stack.Navigator>
   );

@@ -7,6 +7,7 @@ import ListJerseys from './ListJerseys';
 import ListMenu from './ListMenu';
 import ListCart from './ListCart';
 import JerseySlider from './JerseySlider';
+import ListHistory from './ListHistory';
 
 export {
   BannerSlider,
@@ -18,4 +19,5 @@ export {
   ListMenu,
   ListCart,
   JerseySlider,
+  ListHistory,
 };
