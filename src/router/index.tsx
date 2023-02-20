@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   Cart,
   Checkout,
+  EditProfile,
   Home,
   JerseyDetail,
   ListJersey,
@@ -58,6 +59,11 @@ const Router = () => {
         options={{title: 'Keranjang'}}
       />
       <Stack.Screen name="Checkout" component={Checkout} />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{title: 'Edit Profile'}}
+      />
     </Stack.Navigator>
   );
 };

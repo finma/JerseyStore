@@ -5,5 +5,15 @@ import Profile from './Profile';
 import JerseyDetail from './JerseyDetail';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import EditProfile from './EditProfile';
 
-export {Home, Splash, Profile, ListJersey, JerseyDetail, Cart, Checkout};
+export {
+  Home,
+  Splash,
+  Profile,
+  EditProfile,
+  ListJersey,
+  JerseyDetail,
+  Cart,
+  Checkout,
+};
