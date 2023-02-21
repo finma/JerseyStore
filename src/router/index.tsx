@@ -11,6 +11,7 @@ import {
   Home,
   JerseyDetail,
   ListJersey,
+  Login,
   Profile,
   Splash,
 } from '../pages';
@@ -75,6 +76,11 @@ const Router = () => {
         name="History"
         component={History}
         options={{title: 'History Pemesanan'}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
