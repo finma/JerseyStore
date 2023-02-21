@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {Illustration, Logo} from '../../assets';
 import {Button, Input} from '../../components';
@@ -18,6 +18,11 @@ const Login = () => {
         <View style={styles.button}>
           <Button title="Login" type="text" />
         </View>
+      </View>
+
+      <View style={styles.register}>
+        <Text style={styles.textBlue}>Belum Punya Akun ?</Text>
+        <Text style={styles.textBlue}>Klik Untuk Daftar</Text>
       </View>
 
       <View style={styles.illustration}>
