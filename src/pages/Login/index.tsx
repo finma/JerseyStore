@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
@@ -6,6 +7,8 @@ import {Button, Input} from '../../components';
 import {colors, responsiveHeight} from '../../utils';
 
 const Login = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.page}>
       <View style={styles.logo}>
@@ -22,7 +25,11 @@ const Login = () => {
 
       <View style={styles.register}>
         <Text style={styles.textBlue}>Belum Punya Akun ?</Text>
-        <Text style={styles.textBlue}>Klik Untuk Daftar</Text>
+        <Text
+          style={styles.textBlue}
+          onPress={() => navigation.navigate('Register1' as never)}>
+          Klik Untuk Daftar
+        </Text>
       </View>
 
       <View style={styles.illustration}>
