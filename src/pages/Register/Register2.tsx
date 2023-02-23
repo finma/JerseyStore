@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -11,11 +11,14 @@ import {
   View,
 } from 'react-native';
 
-import {IllustrationRegister1} from '../../assets';
-import {Button, Gap, Input} from '../../components';
+import {IllustrationRegister2} from '../../assets';
+import {Button, Gap, Input, Select} from '../../components';
 import {colors, responsiveHeight, responsiveWidth} from '../../utils';
 
-const Register1 = () => {
+const Register2 = () => {
+  const [dataCity] = useState([]);
+  const [dataProvince] = useState([]);
+
   const navigation = useNavigation();
 
   return (
@@ -34,33 +37,32 @@ const Register1 = () => {
 
           {/* Illustration */}
           <View style={styles.illustration}>
-            <IllustrationRegister1 />
+            <IllustrationRegister2 />
             <Gap height={responsiveHeight(12)} />
-            <Text style={styles.title}>Daftar</Text>
-            <Text style={styles.title}>Isi Data Diri Anda</Text>
+            <Text style={styles.title}>Isi Alamat</Text>
+            <Text style={styles.title}>Lengkap Anda</Text>
           </View>
 
           <Gap height={responsiveHeight(12)} />
 
           {/* Circle */}
           <View style={styles.wrapperCircle}>
-            <View style={[styles.circle, styles.circlePrimary]} />
-            <Gap width={responsiveHeight(12)} />
             <View style={[styles.circle, styles.circleDisabled]} />
+            <Gap width={responsiveHeight(12)} />
+            <View style={[styles.circle, styles.circlePrimary]} />
           </View>
 
           {/* Form Register */}
           <View style={styles.card}>
-            <Input label="Nama:" />
-            <Input label="Email:" />
-            <Input label="No. Handphone:" keyboardType="number-pad" />
-            <Input label="Password" secureTextEntry />
+            <Input label="Alamat:" textarea />
+            <Select label="Kota/Kabupaten:" datas={dataCity} />
+            <Select label="Provinsi:" datas={dataProvince} />
             <Gap height={responsiveHeight(30)} />
             <Button
               title="Continue"
               type="icon-text"
               icon="submit"
-              onPress={() => navigation.navigate('Register2' as never)}
+              onPress={() => navigation.navigate('MainApp' as never)}
             />
           </View>
         </ScrollView>
@@ -69,7 +71,7 @@ const Register1 = () => {
   );
 };
 
-export default Register1;
+export default Register2;
 
 const styles = StyleSheet.create({
   page: {
