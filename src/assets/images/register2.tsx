@@ -1,9 +1,14 @@
 import React from 'react';
 import {ClipPath, Defs, G, Path, Rect, Svg} from 'react-native-svg';
+import {responsiveHeight, responsiveWidth} from '../../utils';
 
 const IllustrationRegister2 = () => {
   return (
-    <Svg width="189" height="171" viewBox="0 0 189 171" fill="none">
+    <Svg
+      width={responsiveWidth(189)}
+      height={responsiveHeight(171)}
+      viewBox="0 0 189 171"
+      fill="none">
       <G clip-path="url(#clip0_5_184)">
         <Path
           d="M120.135 98.9715L94.0503 67.8326L41.6911 68.3128L9.9292 99.3566L10.571 99.7705H10.3418V164.342H120.064V99.7705L120.135 98.9715Z"
