@@ -12,6 +12,13 @@ interface InputProps {
   placeholder?: string;
   value?: string;
   secureTextEntry?: boolean;
+  keyboardType?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad';
 }
 
 const Input = ({
@@ -23,6 +30,7 @@ const Input = ({
   placeholder,
   value,
   secureTextEntry,
+  keyboardType,
 }: InputProps) => {
   if (textarea) {
     return (
@@ -46,6 +54,7 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
       />
     </View>
   );
