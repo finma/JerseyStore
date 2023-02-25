@@ -7,7 +7,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from '../../../utils';
-import {Gap} from '../..';
+import Gap from '../Gap';
 
 const CardHistory = ({order}: {order: OrderType}) => {
   return (
