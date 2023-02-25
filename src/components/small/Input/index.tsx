@@ -19,6 +19,7 @@ interface InputProps {
     | 'numeric'
     | 'email-address'
     | 'phone-pad';
+  onChangeText?: (text: string) => void;
 }
 
 const Input = ({
@@ -31,6 +32,7 @@ const Input = ({
   value,
   secureTextEntry,
   keyboardType,
+  onChangeText,
 }: InputProps) => {
   if (textarea) {
     return (
@@ -41,6 +43,8 @@ const Input = ({
           multiline
           numberOfLines={3}
           value={value}
+          placeholder={placeholder}
+          onChangeText={onChangeText}
         />
       </View>
     );
@@ -55,6 +59,7 @@ const Input = ({
         value={value}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
+        onChangeText={onChangeText}
       />
     </View>
   );
