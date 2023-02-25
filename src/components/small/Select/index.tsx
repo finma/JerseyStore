@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
@@ -10,11 +10,19 @@ interface SelectProps {
   height?: number;
   fontSize?: number;
   label?: string;
+  selectedValue?: string;
+  onValueChange?: (itemValue: string, itemIndex: number) => void;
 }
 
-const Select = ({datas, width, height, label, fontSize}: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState('');
-
+const Select = ({
+  datas,
+  width,
+  height,
+  label,
+  fontSize,
+  selectedValue,
+  onValueChange,
+}: SelectProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label({fontSize})}>{label} : </Text>
@@ -22,11 +30,28 @@ const Select = ({datas, width, height, label, fontSize}: SelectProps) => {
         <Picker
           selectedValue={selectedValue}
           style={styles.picker({width, height, fontSize})}
-          onValueChange={itemValue => setSelectedValue(itemValue)}>
+          onValueChange={onValueChange}>
           <Picker.Item label="--Pilih--" value="" />
-          {datas.map((item, idx) => (
-            <Picker.Item label={item} value={item} key={idx} />
-          ))}
+          {datas.map((item: any, idx) => {
+            if (label === 'Provinsi') {
+              return (
+                <Picker.Item
+                  label={item.province}
+                  value={item.province_id}
+                  key={item.province_id}
+                />
+              );
+            } else if (label === 'Kota/Kabupaten') {
+              return (
+                <Picker.Item
+                  label={`${item.type} ${item.city_name}`}
+                  value={item.city_id}
+                  key={item.city_id}
+                />
+              );
+            }
+            return <Picker.Item label={item} value={item} key={idx} />;
+          })}
         </Picker>
       </View>
     </View>
