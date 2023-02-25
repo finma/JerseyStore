@@ -1,6 +1,7 @@
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -16,7 +17,22 @@ import {Button, Gap, Input} from '../../components';
 import {colors, responsiveHeight, responsiveWidth} from '../../utils';
 
 const Register1 = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [noHp, setNoHp] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigation = useNavigation();
+
+  const onContinue = () => {
+    const data = {name, email, noHp, password};
+
+    if (!name || !email || !noHp || !password) {
+      Alert.alert('Error', 'Data tidak boleh kosong');
+    } else {
+      navigation.navigate('Register2' as never, data as never);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -51,16 +67,34 @@ const Register1 = () => {
 
           {/* Form Register */}
           <View style={styles.card}>
-            <Input label="Nama:" />
-            <Input label="Email:" />
-            <Input label="No. Handphone:" keyboardType="number-pad" />
-            <Input label="Password" secureTextEntry />
+            <Input
+              label="Nama:"
+              value={name}
+              onChangeText={value => setName(value)}
+            />
+            <Input
+              label="Email:"
+              value={email}
+              onChangeText={value => setEmail(value)}
+            />
+            <Input
+              label="No. Handphone:"
+              value={noHp}
+              onChangeText={value => setNoHp(value)}
+              keyboardType="number-pad"
+            />
+            <Input
+              label="Password"
+              value={password}
+              onChangeText={value => setPassword(value)}
+              secureTextEntry
+            />
             <Gap height={responsiveHeight(30)} />
             <Button
               title="Continue"
               type="icon-text"
               icon="submit"
-              onPress={() => navigation.navigate('Register2' as never)}
+              onPress={() => onContinue()}
             />
           </View>
         </ScrollView>

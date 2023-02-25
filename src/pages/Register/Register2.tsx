@@ -1,6 +1,7 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -13,13 +14,39 @@ import {
 
 import {IllustrationRegister2} from '../../assets';
 import {Button, Gap, Input, Select} from '../../components';
+import {
+  useGetCitiesQuery,
+  useGetProvincesQuery,
+} from '../../redux/features/RajaongkirSlices';
 import {colors, responsiveHeight, responsiveWidth} from '../../utils';
 
 const Register2 = () => {
-  const [dataCity] = useState([]);
-  const [dataProvince] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
 
   const navigation = useNavigation();
+  const route = useRoute();
+  const {data: dataProvince, isSuccess: isSuccessFetchProvince} =
+    useGetProvincesQuery(null);
+  const {
+    data: dataCity,
+    isSuccess: isSuccessFetchCity,
+    refetch,
+  } = useGetCitiesQuery(selectedProvince);
+
+  const onSubmit = () => {
+    const data = {
+      ...route.params,
+      city: selectedCity,
+      province: selectedProvince,
+    };
+
+    if (!selectedCity || !selectedProvince) {
+      Alert.alert('Error', 'Data tidak boleh kosong');
+    } else {
+      console.log('submit: ', data);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -54,15 +81,31 @@ const Register2 = () => {
 
           {/* Form Register */}
           <View style={styles.card}>
-            <Input label="Alamat:" textarea />
-            <Select label="Kota/Kabupaten:" datas={dataCity} />
-            <Select label="Provinsi:" datas={dataProvince} />
+            <Input label="Alamat" textarea />
+            <Select
+              label="Provinsi"
+              datas={
+                isSuccessFetchProvince ? dataProvince.rajaongkir.results : []
+              }
+              selectedValue={selectedProvince}
+              onValueChange={itemValue => {
+                setSelectedProvince(itemValue);
+                setSelectedCity('');
+                refetch();
+              }}
+            />
+            <Select
+              label="Kota/Kabupaten"
+              datas={isSuccessFetchCity ? dataCity.rajaongkir.results : []}
+              selectedValue={selectedCity}
+              onValueChange={itemValue => setSelectedCity(itemValue)}
+            />
             <Gap height={responsiveHeight(30)} />
             <Button
               title="Continue"
               type="icon-text"
               icon="submit"
-              onPress={() => navigation.navigate('MainApp' as never)}
+              onPress={() => onSubmit()}
             />
           </View>
         </ScrollView>
