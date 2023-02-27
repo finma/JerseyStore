@@ -4,6 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {IconArrowLeft, IconShoppingCart} from '../../../assets';
 import {colors} from '../../../utils';
 import ButtonIconText from './ButtonIconText';
+import ButtonLoading from './ButtonLoading';
 import ButtonTextOnly from './ButtonTextOnly';
 
 interface ButtonProps {
@@ -12,10 +13,11 @@ interface ButtonProps {
   type?: 'icon-only' | 'icon-text' | 'text';
   title?: string;
   onPress?: () => void;
+  loading?: boolean;
 }
 
 const Button = (props: ButtonProps) => {
-  const {icon, totalItems, type, onPress} = props;
+  const {icon, totalItems, type, onPress, loading} = props;
 
   const Icon = () => {
     if (icon === 'shopping-cart') {
@@ -25,6 +27,10 @@ const Button = (props: ButtonProps) => {
     }
     return <IconShoppingCart />;
   };
+
+  if (loading) {
+    return <ButtonLoading />;
+  }
 
   if (type === 'text') {
     return <ButtonTextOnly {...props} />;
