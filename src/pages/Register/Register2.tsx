@@ -11,14 +11,21 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {useMutation} from 'react-query';
 
 import {IllustrationRegister2} from '../../assets';
 import {Button, Gap, Input, Select} from '../../components';
+import Firebase from '../../config/Firebase';
 import {
   useGetCitiesQuery,
   useGetProvincesQuery,
 } from '../../redux/features/RajaongkirSlices';
-import {colors, responsiveHeight, responsiveWidth} from '../../utils';
+import {
+  colors,
+  responsiveHeight,
+  responsiveWidth,
+  storeData,
+} from '../../utils';
 
 const Register2 = () => {
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -33,6 +40,43 @@ const Register2 = () => {
     isSuccess: isSuccessFetchCity,
     refetch,
   } = useGetCitiesQuery(selectedProvince);
+  const {mutate, isLoading} = useMutation(
+    async (data: any) => {
+      const userCredential: any =
+        await Firebase.auth().createUserWithEmailAndPassword(
+          data.email,
+          data.password,
+        );
+
+      const newData = {
+        ...data,
+        uid: userCredential.user.uid,
+      };
+
+      Firebase.database()
+        .ref('users/' + userCredential.user.uid)
+        .set({
+          username: data.name,
+          email: data.email,
+        });
+
+      storeData('user', newData);
+
+      return newData;
+    },
+    {
+      onSuccess: () => {
+        // console.log('success: ', data);
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'MainApp' as never}],
+        });
+      },
+      onError: error => {
+        console.log('error: ', error);
+      },
+    },
+  );
 
   const onSubmit = () => {
     const data = {
@@ -44,7 +88,8 @@ const Register2 = () => {
     if (!selectedCity || !selectedProvince) {
       Alert.alert('Error', 'Data tidak boleh kosong');
     } else {
-      console.log('submit: ', data);
+      // console.log('submit: ', data);
+      mutate(data);
     }
   };
 
@@ -105,6 +150,7 @@ const Register2 = () => {
               title="Continue"
               type="icon-text"
               icon="submit"
+              loading={isLoading}
               onPress={() => onSubmit()}
             />
           </View>
