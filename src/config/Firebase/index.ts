@@ -1,8 +1,8 @@
-import firebase from 'firebase/compat/app';
-require('firebase/compat/auth');
-require('firebase/compat/database');
+import {initializeApp} from 'firebase/app';
+import {getAuth, signOut} from 'firebase/auth';
+import {getDatabase} from 'firebase/database';
 
-firebase.initializeApp({
+const app = initializeApp({
   apiKey: 'AIzaSyBm0kTSkVmKM4SIdyryu0GSY-3zamjPzK4',
   authDomain: 'jerseystore-270bc.firebaseapp.com',
   projectId: 'jerseystore-270bc',
@@ -12,6 +12,8 @@ firebase.initializeApp({
   measurementId: 'G-44SPK0DJXS',
 });
 
-const Firebase = firebase;
+const auth = getAuth(app);
+const database = getDatabase(app);
 
-export default Firebase;
+export {auth, database, signOut};
+export default app;
