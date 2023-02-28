@@ -5,6 +5,7 @@ import Slider2 from './slider2.png';
 import FotoProfile from './profile.png';
 import IllustrationRegister1 from './register1';
 import IllustrationRegister2 from './register2';
+import DefaultAvatar from './default.jpg';
 
 export {
   Logo,
@@ -14,4 +15,5 @@ export {
   FotoProfile,
   IllustrationRegister1,
   IllustrationRegister2,
+  DefaultAvatar,
 };
