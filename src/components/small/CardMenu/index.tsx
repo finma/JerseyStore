@@ -3,15 +3,32 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {IconArrowRight} from '../../../assets';
-import {colors, responsiveHeight} from '../../../utils';
+import {auth, signOut} from '../../../config/Firebase';
+import {colors, removeData, responsiveHeight} from '../../../utils';
 
 const CardMenu = ({menu}: {menu: MenuType}) => {
   const navigation = useNavigation();
 
+  const onSubmit = () => {
+    if (menu.page === 'Login') {
+      signOut(auth)
+        .then(() => {
+          removeData('user');
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Login' as never}],
+          });
+        })
+        .catch(error => {
+          console.log('error: ', error);
+        });
+    } else {
+      navigation.navigate(menu.page as never);
+    }
+  };
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate(menu.page as never)}>
+    <TouchableOpacity style={styles.container} onPress={onSubmit}>
       <View style={styles.menu}>
         {menu.icon}
         <Text style={styles.textMenu}>{menu.title}</Text>
