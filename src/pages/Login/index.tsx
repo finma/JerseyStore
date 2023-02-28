@@ -1,51 +1,41 @@
 import {useNavigation} from '@react-navigation/native';
-import {signInWithEmailAndPassword} from 'firebase/auth';
-import {onValue, ref} from 'firebase/database';
 import React, {useState} from 'react';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import {useMutation} from 'react-query';
 
 import {Illustration, Logo} from '../../assets';
 import {Button, Input} from '../../components';
-import {auth, database} from '../../config/Firebase';
-import {colors, responsiveHeight, storeData} from '../../utils';
+import {
+  colors,
+  responsiveHeight,
+  storeData,
+  loginUser,
+  readDataOnce,
+} from '../../utils';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigation = useNavigation();
 
-  const {mutate} = useMutation(
+  const {mutate, isLoading} = useMutation(
     async (data: any) => {
-      setIsLoading(true);
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
+      const userCredential = await loginUser(data.email, data.password);
 
       let newData = {};
 
-      onValue(
-        ref(database, `users/${userCredential.user.uid}`),
-        snapshot => {
-          // console.log('snapshot', snapshot.val());
-          newData = snapshot.val();
-          return snapshot.val();
-        },
-        {
-          onlyOnce: true,
-        },
-      );
+      readDataOnce(`users/${userCredential.user.uid}`, snapshot => {
+        // console.log('snapshot', snapshot.val());
+        newData = snapshot.val();
+        return snapshot.val();
+      });
 
       return newData;
     },
     {
       onSuccess: data => {
-        console.log('data', data);
-        setIsLoading(false);
+        // console.log('data', data);
         storeData('user', data);
         navigation.reset({
           index: 0,
@@ -54,7 +44,6 @@ const Login = () => {
       },
       onError: error => {
         console.log('error', error);
-        setIsLoading(false);
       },
     },
   );

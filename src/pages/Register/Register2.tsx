@@ -1,6 +1,4 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {ref, set} from 'firebase/database';
 import React, {useState} from 'react';
 import {
   Alert,
@@ -17,7 +15,6 @@ import {useMutation} from 'react-query';
 
 import {IllustrationRegister2} from '../../assets';
 import {Button, Gap, Input, Select} from '../../components';
-import {auth, database} from '../../config/Firebase';
 import {
   useGetCitiesQuery,
   useGetProvincesQuery,
@@ -27,6 +24,8 @@ import {
   responsiveHeight,
   responsiveWidth,
   storeData,
+  registerUser,
+  writeData,
 } from '../../utils';
 
 const Register2 = () => {
@@ -45,26 +44,24 @@ const Register2 = () => {
   } = useGetCitiesQuery(selectedProvince);
   const {mutate, isLoading} = useMutation(
     async (data: any) => {
-      const userCredential: any = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
+      const userCredential = await registerUser(data.email, data.password);
 
       const newData = {
         ...data,
         uid: userCredential.user.uid,
       };
 
-      set(ref(database, 'users/' + userCredential.user.uid), newData);
+      // save data to firebase
+      writeData(`users/${userCredential.user.uid}`, newData);
 
+      // save data to local storage
       storeData('user', newData);
 
       return newData;
     },
     {
-      onSuccess: data => {
-        console.log('success: ', data);
+      onSuccess: () => {
+        // console.log('success: ', data);
         navigation.reset({
           index: 0,
           routes: [{name: 'MainApp' as never}],
