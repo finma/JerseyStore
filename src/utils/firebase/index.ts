@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {DataSnapshot, onValue, ref, set} from 'firebase/database';
-import {auth, database} from 'src/config/Firebase';
+import {auth, database} from '../../config/Firebase';
 
 export const registerUser = (email: string, password: string) =>
   createUserWithEmailAndPassword(auth, email, password);
