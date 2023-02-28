@@ -1,4 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {ref, set} from 'firebase/database';
 import React, {useState} from 'react';
 import {
   Alert,
@@ -15,7 +17,7 @@ import {useMutation} from 'react-query';
 
 import {IllustrationRegister2} from '../../assets';
 import {Button, Gap, Input, Select} from '../../components';
-import Firebase from '../../config/Firebase';
+import {auth, database} from '../../config/Firebase';
 import {
   useGetCitiesQuery,
   useGetProvincesQuery,
@@ -28,6 +30,7 @@ import {
 } from '../../utils';
 
 const Register2 = () => {
+  const [address, setAddress] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
 
@@ -42,31 +45,26 @@ const Register2 = () => {
   } = useGetCitiesQuery(selectedProvince);
   const {mutate, isLoading} = useMutation(
     async (data: any) => {
-      const userCredential: any =
-        await Firebase.auth().createUserWithEmailAndPassword(
-          data.email,
-          data.password,
-        );
+      const userCredential: any = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
 
       const newData = {
         ...data,
         uid: userCredential.user.uid,
       };
 
-      Firebase.database()
-        .ref('users/' + userCredential.user.uid)
-        .set({
-          username: data.name,
-          email: data.email,
-        });
+      set(ref(database, 'users/' + userCredential.user.uid), newData);
 
       storeData('user', newData);
 
       return newData;
     },
     {
-      onSuccess: () => {
-        // console.log('success: ', data);
+      onSuccess: data => {
+        console.log('success: ', data);
         navigation.reset({
           index: 0,
           routes: [{name: 'MainApp' as never}],
@@ -81,6 +79,7 @@ const Register2 = () => {
   const onSubmit = () => {
     const data = {
       ...route.params,
+      address,
       city: selectedCity,
       province: selectedProvince,
     };
@@ -126,7 +125,11 @@ const Register2 = () => {
 
           {/* Form Register */}
           <View style={styles.card}>
-            <Input label="Alamat" textarea />
+            <Input
+              label="Alamat"
+              textarea
+              onChangeText={value => setAddress(value)}
+            />
             <Select
               label="Provinsi"
               datas={
