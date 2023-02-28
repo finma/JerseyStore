@@ -1,13 +1,71 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import {onValue, ref} from 'firebase/database';
+import React, {useState} from 'react';
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import {useMutation} from 'react-query';
 
 import {Illustration, Logo} from '../../assets';
 import {Button, Input} from '../../components';
-import {colors, responsiveHeight} from '../../utils';
+import {auth, database} from '../../config/Firebase';
+import {colors, responsiveHeight, storeData} from '../../utils';
 
 const Login = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const navigation = useNavigation();
+
+  const {mutate} = useMutation(
+    async (data: any) => {
+      setIsLoading(true);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+
+      let newData = {};
+
+      onValue(
+        ref(database, `users/${userCredential.user.uid}`),
+        snapshot => {
+          // console.log('snapshot', snapshot.val());
+          newData = snapshot.val();
+          return snapshot.val();
+        },
+        {
+          onlyOnce: true,
+        },
+      );
+
+      return newData;
+    },
+    {
+      onSuccess: data => {
+        console.log('data', data);
+        setIsLoading(false);
+        storeData('user', data);
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'MainApp' as never}],
+        });
+      },
+      onError: error => {
+        console.log('error', error);
+        setIsLoading(false);
+      },
+    },
+  );
+
+  const handleLogin = () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Email dan Password harus diisi');
+    } else {
+      mutate({email, password});
+    }
+  };
 
   return (
     <View style={styles.page}>
@@ -16,10 +74,24 @@ const Login = () => {
       </View>
 
       <View style={styles.cardLogin}>
-        <Input label="Email:" />
-        <Input label="Password:" secureTextEntry />
+        <Input
+          label="Email"
+          value={email}
+          onChangeText={value => setEmail(value)}
+        />
+        <Input
+          label="Password"
+          value={password}
+          onChangeText={value => setPassword(value)}
+          secureTextEntry
+        />
         <View style={styles.button}>
-          <Button title="Login" type="text" />
+          <Button
+            title="Login"
+            type="text"
+            onPress={handleLogin}
+            loading={isLoading}
+          />
         </View>
       </View>
 
